@@ -1,0 +1,42 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './App.scss';
+import { tags } from '../../api'
+import ReactSwipe from 'react-swipe';
+import GameBlock from '../../components/GameBlock';
+
+class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          tag: [],
+          game: {
+              img:'http://teesheet.dev.baigolf.com/static/uploads/ads_title_img/20180712/702c3cb4f0c8b5f0cfbe5c45a9843196.jpg',
+              name: '赛事标题',
+              play_time: '2018-08-01 10:00',
+              remain_num: 20,
+          }
+      }
+  }
+  componentDidMount(){
+    tags()
+    .then((res) => {
+      console.log(res)
+    })
+  }
+  render() {
+    return (
+      <div className="home">
+        <ReactSwipe className="carousel" swipeOptions={{continuous: true}}>
+            <div><img src={this.state.game.img} /></div>
+        </ReactSwipe>
+          <div className="pre-block">
+              <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>
+              <GameBlock game={this.state.game}></GameBlock>
+          </div>
+      </div>
+    );
+  }
+}
+
+export default App;

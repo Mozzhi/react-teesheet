@@ -1,0 +1,17 @@
+@import '../../common/common.scss';
+
+.game-block{
+  .img-show{
+    width:beRem(135);
+    height: beRem(90);
+    background: {
+      repeat: no-repeat;
+      size: cover;
+    };
+  }
+  .game-msg{
+    padding-left: beRem(10);
+  }
+}
+
+

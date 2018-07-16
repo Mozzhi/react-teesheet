@@ -1,0 +1,18 @@
+$rem: 1rem;
+@function beRem($num){
+  @return ($num/37.5) * $rem;
+}
+
+.more{
+  font-size: beRem(14);
+  color:#999;
+  background: {
+    repeat: no-repeat;
+    size: 5px 10px;
+    position:right center;
+    image: url(../../static/images/btn_next.png);
+  };
+  padding-right: 15px;
+  float: right;
+  margin-top: 5px;
+}

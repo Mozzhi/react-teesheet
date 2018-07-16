@@ -1,0 +1,20 @@
+@import "../../common/common.scss";
+.home{
+  .carousel{
+    height:180px;
+  }
+  .pre-block{
+    padding: 0 beRem(20);
+    .pre-title{
+      font-size: beRem(20);
+      padding: beRem(10) 0;
+      img{
+        width: beRem(18);
+        height: beRem(18);
+        vertical-align: middle;
+        margin-right: beRem(10);
+      }
+    }
+
+  }
+}
