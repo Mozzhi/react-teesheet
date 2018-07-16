@@ -4,6 +4,8 @@ import './App.scss';
 import { tags } from '../../api'
 import ReactSwipe from 'react-swipe';
 import GameBlock from '../../components/GameBlock';
+import NewsBlock from '../../components/NewsBlock';
+import FootTab from '../../components/FootTab';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +36,11 @@ class App extends Component {
               <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>
               <GameBlock game={this.state.game}></GameBlock>
           </div>
+          <div className="pre-block">
+              <div className="pre-title"><img src={require("../../static/images/news.png")} alt=""/>风神资讯 <span className="more">更多</span>  </div>
+              <NewsBlock game={this.state.game}></NewsBlock>
+          </div>
+          <FootTab addClass="home"></FootTab>
       </div>
     );
   }

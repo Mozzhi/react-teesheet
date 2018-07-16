@@ -1,0 +1,47 @@
+@import '../../common/common.scss';
+
+.foot-tab{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: beRem(50);
+  background: #fff;
+  text-align:center;
+  .tab-icon{
+    display: inline-block;
+    width:beRem(24);
+    height: beRem(24);
+    background: {
+      repeat:no-repeat;
+      size: beRem(24);
+      position:center;
+    };
+  }
+}
+
+.home-icon{
+  background-image: url(../../static/images/home_normal.png);
+}
+.home-icon.active{
+  background-image: url(../../static/images/home_highlight.png);
+}
+.order-icon{
+  background-image: url(../../static/images/order_normal.png);
+}
+.order-icon.active{
+  background-image: url(../../static/images/order_highlight.png);
+}
+.gps-icon{
+  background-image: url(../../static/images/GPS-normal.png);
+}
+.gps-icon.active{
+  background-image: url(../../static/images/GPS_highlight.png);
+}
+.me-icon{
+  background-image: url(../../static/images/me_normal.png);
+}
+.me-icon.active{
+  background-image: url(../../static/images/me_highlight.png);
+}
+

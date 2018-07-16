@@ -13,10 +13,10 @@ class GameBlock extends Component {
                 <a href="" data-flex="dir:left box:first">
                     <div className="img-show" style={{backgroundImage:`url(${this.props.game.img})`}}></div>
                     <div className="game-msg">
-                        <div>{this.props.game.name}</div>
+                        <div className="game-name">{this.props.game.name}</div>
                         <div>开球时间：{this.props.game.play_time}</div>
-                        <div data-flex="dir:left box:last">
-                            <div><span></span></div>
+                        <div className="remain-box" data-flex="dir:left box:last">
+                            <div><span className="remain-bar"><b></b></span></div>
                             <div>仅剩{this.props.game.remain_num}位</div>
                         </div>
                     </div>
