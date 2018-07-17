@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.scss';
-import { tags } from '../../api'
+import { axios } from '../../api'
 import ReactSwipe from 'react-swipe';
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
@@ -21,11 +21,19 @@ class App extends Component {
       }
   }
   componentDidMount(){
-    tags()
+      axios.get('Ads')
     .then((res) => {
       console.log(res)
     })
   }
+  getNews(){
+      axios.get('ClubInformation?page=1&row=5')
+          .then((res) => {
+              
+          })
+  }
+
+
   render() {
     return (
       <div className="home">

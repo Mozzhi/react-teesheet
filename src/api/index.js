@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.imjad.cn/pixiv/v2/'
+axios.defaults.baseURL = 'http://teesheet.dev.baigolf.com/api/'
+// axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers['Authorization'] = 'jwt ' + (localStorage.getItem('token') || '');
 
-export function tags(){
-  return axios.get('/',{params:{
-    type: 'tags',
-    page: 1
-  }})
-}
+export { axios };
+

@@ -18,30 +18,37 @@
       position:center;
     };
   }
+  .active{
+    color:#009973;
+  }
 }
 
 .home-icon{
   background-image: url(../../static/images/home_normal.png);
 }
-.home-icon.active{
-  background-image: url(../../static/images/home_highlight.png);
-}
 .order-icon{
-  background-image: url(../../static/images/order_normal.png);
-}
-.order-icon.active{
-  background-image: url(../../static/images/order_highlight.png);
-}
+   background-image: url(../../static/images/order_normal.png);
+ }
 .gps-icon{
   background-image: url(../../static/images/GPS-normal.png);
-}
-.gps-icon.active{
-  background-image: url(../../static/images/GPS_highlight.png);
 }
 .me-icon{
   background-image: url(../../static/images/me_normal.png);
 }
-.me-icon.active{
-  background-image: url(../../static/images/me_highlight.png);
+.active{
+  .home-icon{
+    background-image: url(../../static/images/home_highlight.png);
+  }
+  .order-icon{
+    background-image: url(../../static/images/order_highlight.png);
+  }
+  .gps-icon{
+     background-image: url(../../static/images/GPS_highlight.png);
+   }
+  .me-icon{
+    background-image: url(../../static/images/me_highlight.png);
+  }
 }
+
+
 
