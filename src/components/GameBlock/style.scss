@@ -1,6 +1,11 @@
 @import '../../common/common.scss';
 
 .game-block{
+  padding-bottom: beRem(10);
+  border-bottom: 1px solid #e1e1e1;
+  &:last-child{
+    border-bottom: none;
+  }
   .img-show{
     width:beRem(135);
     height: beRem(90);
@@ -10,7 +15,37 @@
     };
   }
   .game-msg{
-    padding-left: beRem(10);
+    padding: 0 beRem(20) beRem(0) beRem(10);
+    .game-name{
+      font-size: beRem(17);
+      font-weight: bold;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      line-height: beRem(24);
+      height: beRem(48)
+    }
+    .remain-box{
+      margin-top: 5px;
+      .remain-bar{
+        position:relative;
+        vertical-align: middle;
+        height: 5px;
+        width: beRem(90);
+        display:inline-block;
+        background: #eee;
+        b{
+          position: absolute;
+          height: 100%;
+          left:0;
+          top:0;
+          background: linear-gradient(to right, #FF6C00 0%,#FF2200 100%);
+          width: 50%;
+        }
+      }
+    }
+
   }
 }
 

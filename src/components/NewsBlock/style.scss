@@ -1,0 +1,13 @@
+@import '../../common/common.scss';
+.news-block{
+  .game-msg{
+    padding-left: 0;
+    .news-type{
+      margin-top: beRem(15);
+      color:#999999;
+    }
+  }
+  .img-show{
+    margin-right: beRem(20);
+  }
+}
