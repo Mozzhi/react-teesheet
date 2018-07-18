@@ -6,6 +6,7 @@ import ReactSwipe from 'react-swipe';
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
+let Swiper = window.Swiper;
 
 class App extends Component {
   constructor(props) {
@@ -17,29 +18,66 @@ class App extends Component {
               name: '赛事标题',
               play_time: '2018-08-01 10:00',
               remain_num: 20,
-          }
+          },
+          banners: [],
       }
   }
   componentDidMount(){
-      axios.get('Ads')
-    .then((res) => {
-      console.log(res)
-    })
+      this.getBanners();
   }
-  getNews(){
-      axios.get('ClubInformation?page=1&row=5')
+  // getNews(){
+  //     axios.get('ClubInformation?page=1&row=5')
+  //         .then((res) => {
+  //
+  //         })
+  // }
+  getBanners(){
+      axios.get('Ads')
           .then((res) => {
+              console.log(res.data.data)
+            this.setState({
 
+                banners: res.data.data,
+            })
           })
   }
-
+    componentWillUnmount() {
+        if (this.swiper) { // 销毁swiper
+            this.swiper.destroy()
+        }
+    }
+    componentDidUpdate(){
+      console.log('s')
+        if(this.swiper){
+            this.swiper.slideTo(0, 0)
+            this.swiper.destroy()
+            this.swiper = null;
+        }
+        this.swiper = new Swiper(this.refs.lun, {
+            loop:true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    }
 
   render() {
     return (
       <div className="home">
-        <ReactSwipe className="carousel" swipeOptions={{continuous: true}}>
-            <div><img src={this.state.game.img} /></div>
-        </ReactSwipe>
+          <div className="swiper-container" ref="lun">
+              <div className="swiper-wrapper">
+                  {
+                      this.state.banners.map((banner, index) => {
+                          return (<div className="swiper-slide" data-id="0" key={index}><img src={banner.title_img} alt={banner.ad_title}/></div>)
+                      })
+                  }
+              </div>
+              <div id="PgFather">
+                  <div className="swiper-pagination" id='body-left-pagination'></div>
+              </div>
+
+          </div>
           <div className="pre-block">
               <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>
               <GameBlock game={this.state.game}></GameBlock>
