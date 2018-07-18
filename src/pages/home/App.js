@@ -29,7 +29,7 @@ class App extends Component {
   getNews(){
       axios.get('ClubInformation?page=1&row=5')
           .then((res) => {
-              
+
           })
   }
 
