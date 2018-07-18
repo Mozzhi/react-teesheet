@@ -73,9 +73,7 @@ class App extends Component {
                       })
                   }
               </div>
-              <div id="PgFather">
-                  <div className="swiper-pagination" id='body-left-pagination'></div>
-              </div>
+              <div className="swiper-pagination" id='body-left-pagination'></div>
 
           </div>
           <div className="pre-block">
