@@ -1,7 +1,8 @@
 @import '../../common/common.scss';
 
 .game-block{
-  padding-bottom: beRem(10);
+  padding-bottom: beRem(20);
+  padding-top: beRem(20);
   border-bottom: 1px solid #e1e1e1;
   &:last-child{
     border-bottom: none;

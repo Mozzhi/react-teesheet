@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.scss';
-import { axios } from '../../api'
+import { HttpRequest } from '../../api'
 import ReactSwipe from 'react-swipe';
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
@@ -19,35 +19,57 @@ class App extends Component {
               play_time: '2018-08-01 10:00',
               remain_num: 20,
           },
+          games: [],
+          informations: [],
           banners: [],
       }
   }
   componentDidMount(){
       this.getBanners();
+      this.getGames();
+      this.getClubInformation();
   }
-  // getNews(){
-  //     axios.get('ClubInformation?page=1&row=5')
-  //         .then((res) => {
-  //
-  //         })
-  // }
   getBanners(){
-      axios.get('Ads')
-          .then((res) => {
-              console.log(res.data.data)
+      HttpRequest({
+          url:'Ads',
+          callback: (res) => {
+              console.log(res)
             this.setState({
-
-                banners: res.data.data,
+                banners: res.data,
             })
-          })
+          }
+      })
   }
+    getClubInformation(){
+        HttpRequest({
+            url:'ClubInformation?page=1&row=5',
+            callback: (res) => {
+                this.setState({
+                    informations: res.data.list,
+                })
+            }
+        })
+    }
+    getGames(){
+        HttpRequest({
+            url:'Games',
+            callback: (res) => {
+                this.setState({
+                    games: res.data,
+                })
+            }
+        })
+    }
+
     componentWillUnmount() {
         if (this.swiper) { // 销毁swiper
             this.swiper.destroy()
         }
+        if (this.gameSwiper) { // 销毁swiper
+            this.gameSwiper.destroy()
+        }
     }
     componentDidUpdate(){
-      console.log('s')
         if(this.swiper){
             this.swiper.slideTo(0, 0)
             this.swiper.destroy()
@@ -57,6 +79,18 @@ class App extends Component {
             loop:true,
             pagination: {
                 el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+        if(this.gameSwiper){
+            this.gameSwiper.slideTo(0, 0)
+            this.gameSwiper.destroy()
+            this.gameSwiper = null;
+        }
+        this.gameSwiper = new Swiper(this.refs.game, {
+            loop:true,
+            pagination: {
+                el: '.swiper-paginations',
                 clickable: true,
             },
         });
@@ -76,13 +110,44 @@ class App extends Component {
               <div className="swiper-pagination" id='body-left-pagination'></div>
 
           </div>
-          <div className="pre-block">
+          <div className="pre-block" style={{'display':this.state.games.length > 0 ? 'block' : 'none'}}>
               <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>
-              <GameBlock game={this.state.game}></GameBlock>
+              <div className="swiper-container" ref="game">
+                  <div className="swiper-wrapper">
+                      <div className="swiper-slide">
+                          {
+                              this.state.games.map((item, index) => {
+                                  if(index < 3){
+                                    return <GameBlock game={item} key={index}></GameBlock>
+                                  }
+                              })
+                          }
+                      </div>
+                      {
+                          this.state.games.length > 3 ?
+                              <div className="swiper-slide">
+                                  {
+                                      this.state.games.map((item, index) => {
+                                          if(index > 2){
+                                              return <GameBlock game={item} key={index}></GameBlock>
+                                          }
+                                      })
+                                  }
+                          </div> : ''
+                      }
+                  </div>
+                  <div className="swiper-paginations swiper-pagination"></div>
+              </div>
+
+
           </div>
-          <div className="pre-block">
+          <div className="pre-block" style={{'display':this.state.informations.length > 0 ? 'block' : 'none'}}>
               <div className="pre-title"><img src={require("../../static/images/news.png")} alt=""/>风神资讯 <span className="more">更多</span>  </div>
-              <NewsBlock game={this.state.game}></NewsBlock>
+              {
+                  this.state.informations.map((item, index) => {
+                      return <NewsBlock game={item} key={index}></NewsBlock>
+                  })
+              }
           </div>
           <FootTab addClass="home"></FootTab>
       </div>

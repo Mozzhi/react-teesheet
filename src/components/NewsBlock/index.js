@@ -10,10 +10,10 @@ class NewsBlock extends Component {
             <div className="game-block news-block">
                 <a href="" data-flex="dir:left box:last">
                     <div className="game-msg">
-                        <div className="game-name">{this.props.game.name}</div>
-                     <div className="news-type">会谈·35分钟前</div>
+                        <div className="game-name">{this.props.game.title}</div>
+                     <div className="news-type">{this.props.game.type_name}·{this.props.game.last_time_lang}</div>
                     </div>
-                    <div className="img-show" style={{backgroundImage:`url(${this.props.game.img})`}}></div>
+                    <div className="img-show" style={{backgroundImage:`url(${this.props.game.title_img_thumb})`}}></div>
                 </a>
             </div>
         )
