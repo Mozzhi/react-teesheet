@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './App.scss';
 import { HttpRequest } from '../../api'
-import ReactSwipe from 'react-swipe';
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
