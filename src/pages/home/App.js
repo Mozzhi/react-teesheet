@@ -109,6 +109,13 @@ class App extends Component {
               <div className="swiper-pagination" id='body-left-pagination'></div>
 
           </div>
+          <div data-flex="dir:left box:first" className="info">
+              <div><img src={require("../../static/images/news_title.png")} alt="news"/></div>
+              <div className="info-list">
+                  <div>风神先锋赛火热报名中，欢迎各大爱好…</div>
+                  <div>风神先锋赛火热报名中，欢迎各大爱好…</div>
+              </div>
+          </div>
           <div className="pre-block" style={{'display':this.state.games.length > 0 ? 'block' : 'none'}}>
               <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>
               <div className="swiper-container" ref="game">

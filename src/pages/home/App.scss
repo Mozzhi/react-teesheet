@@ -3,6 +3,19 @@
   .carousel{
     height:180px;
   }
+  .info{
+    background: #fff;
+    margin-bottom: beRem(10);
+    padding: beRem(20);
+    img{
+      width:beRem(39);
+      height: beRem(43);
+    }
+    .info-list{
+      padding-left: beRem(20);
+      line-height: beRem(22);
+    }
+  }
   .pre-block{
     padding: 0 0 beRem(10) beRem(20);
     background: #fff;
