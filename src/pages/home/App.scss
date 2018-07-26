@@ -16,6 +16,36 @@
       line-height: beRem(22);
     }
   }
+  .search-box{
+    padding-top: 0;
+    .search-bar{
+      border-bottom: 1px solid #e1e1e1;
+      font-size: beRem(20);
+      padding: beRem(15) 0;
+      span{
+        font-size: beRem(14);
+        color: #666;
+      }
+      img{
+        width: beRem(25);
+        height: beRem(25);
+        vertical-align: text-bottom;
+        margin-right: beRem(20);
+      }
+    }
+    .btn-box{
+      padding: beRem(30) 0 beRem(10);
+      .search-btn{
+        background:linear-gradient(90deg,rgba(4,221,156,1),rgba(24,202,138,1));
+        height: beRem(44);
+        border-radius: beRem(44);
+        text-align: center;
+        line-height: beRem(44);
+        color:#fff;
+        font-size: beRem(16);
+      }
+    }
+  }
   .pre-block{
     padding: 0 0 beRem(10) beRem(20);
     background: #fff;

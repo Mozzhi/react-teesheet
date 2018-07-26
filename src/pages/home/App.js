@@ -5,6 +5,8 @@ import { HttpRequest } from '../../api'
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
+import 'spring-picker/lib/style.css';
+import { Picker, Popup } from 'spring-picker';
 let Swiper = window.Swiper;
 
 class App extends Component {
@@ -21,24 +23,69 @@ class App extends Component {
           games: [],
           informations: [],
           banners: [],
+          userPickerVisible: false,
+          defaultValue: {name: 'Lincal', value: 5},
       }
-  }
-  componentDidMount(){
-      this.getBanners();
-      this.getGames();
-      this.getClubInformation();
-  }
-  getBanners(){
-      HttpRequest({
-          url:'Ads',
-          callback: (res) => {
-              console.log(res)
-            this.setState({
-                banners: res.data,
-            })
+      this.userData =  {
+          list: [
+              {name: '杜保坤', value: 0},
+              {name: '况宏瑞', value: 1},
+              {name: '盘维', value: 2},
+              {name: '杨泉', value: 3},
+              {name: '福娃', value: 4},
+              {name: 'Lincal', value: 5},
+              {name: '记忆残骸', value: 6},
+              {name: 'Raoh', value: 7},
+              {name: '铁甲飞龙', value: 8},
+              {name: '吴泽兵', value: 9},
+              {name: '邱福龙', value: 10},
+              {name: '小泥巴', value: 11},
+          ],
+          defaultValue: this.state.defaultValue,
+          displayValue (item) {
+              return item.name;
           }
-      })
+      };
   }
+    // user选择
+    showUserPicker (e) {
+        e.nativeEvent.stopImmediatePropagation();
+        this.setState({userPickerVisible: true});
+    }
+
+    handleChangeUser (data) {
+        data = data || {}
+        this.userData.defaultValue = data;
+        this.setState({defaultValue: data});
+    }
+
+    closeUserPicker () {
+        this.setState({userPickerVisible: false});
+    }
+
+    cancelUserPicker () {
+        this.userData.defaultValue = {};
+        this.setState({
+            userPickerVisible: false,
+            defaultValue: {}
+        });
+    }
+      componentDidMount(){
+          this.getBanners();
+          this.getGames();
+          this.getClubInformation();
+      }
+      getBanners(){
+          HttpRequest({
+              url:'Ads',
+              callback: (res) => {
+                  console.log(res)
+                this.setState({
+                    banners: res.data,
+                })
+              }
+          })
+      }
     getClubInformation(){
         HttpRequest({
             url:'ClubInformation?page=1&row=5',
@@ -107,13 +154,19 @@ class App extends Component {
                   }
               </div>
               <div className="swiper-pagination" id='body-left-pagination'></div>
-
           </div>
           <div data-flex="dir:left box:first" className="info">
               <div><img src={require("../../static/images/news_title.png")} alt="news"/></div>
               <div className="info-list">
                   <div>风神先锋赛火热报名中，欢迎各大爱好…</div>
                   <div>风神先锋赛火热报名中，欢迎各大爱好…</div>
+              </div>
+          </div>
+          <div className="info search-box">
+              <div className="search-bar"><img src={require("../../static/images/calendar.png")} alt="calendar"/>07-26 <span>（今天）</span> </div>
+              <div className="search-bar" onClick={this.showUserPicker.bind(this)}><img src={require("../../static/images/vip.png")} alt="calendar"/>{ this.state.defaultValue.name }</div>
+              <div className="btn-box">
+                  <div className="btn search-btn">搜索球场套餐</div>
               </div>
           </div>
           <div className="pre-block" style={{'display':this.state.games.length > 0 ? 'block' : 'none'}}>
@@ -156,6 +209,17 @@ class App extends Component {
               }
           </div>
           <FootTab addClass="home"></FootTab>
+          <div>
+              <Popup
+                  onCancel={this.cancelUserPicker.bind(this)}
+                  onConfirm={this.closeUserPicker.bind(this)}
+                  visible={this.state.userPickerVisible}>
+                  <Picker
+                      onChange={this.handleChangeUser.bind(this)}
+                      data={this.userData}
+                  />
+              </Popup>
+          </div>
       </div>
     );
   }
