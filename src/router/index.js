@@ -4,6 +4,7 @@ import asyncComponent from './async-component'
 
 import App from '../pages/home/App';
 const NewsList = asyncComponent(() => import('../pages/newslist/NewsList'))
+const Mine = asyncComponent(() => import('../pages/mine'))
 
 class Router extends Component {
   render() {
@@ -13,6 +14,7 @@ class Router extends Component {
           <Switch>
             <Route exact path="/" component={App}/>
             <Route path="/newslist" component={NewsList} />
+            <Route path="/mine" component={Mine} />
             <Redirect to='/' />
           </Switch>
         </HashRouter>

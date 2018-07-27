@@ -1,0 +1,29 @@
+@import '../../common/common.scss';
+
+.mine{
+  .my-detail{
+    background: #fff;
+    .my-info{
+      padding: beRem(20);
+      .my-pic{
+        width: beRem(70);
+        div{
+          width: beRem(70);
+          height: beRem(70);
+          border-radius: beRem(70);
+          background: {
+            repeat: no-repeat;
+            size: cover;
+            position: center;
+          };
+        }
+
+      }
+    }
+    .assets{
+      text-align: center;
+      border-top: 1px solid #e1e1e1;
+      padding: beRem(20);
+    }
+  }
+}
