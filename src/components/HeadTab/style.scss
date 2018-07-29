@@ -1,0 +1,25 @@
+@import '../../common/common.scss';
+.tab-box{
+  position: relative;
+  .head-tab{
+    text-align: center;
+    line-height: beRem(45);
+    font-size: beRem(15);
+    background: #fff;
+    a{
+      color: #999;
+      &.active{
+        color: #04BA83;
+      }
+    }
+  }
+  .move-line{
+    position: absolute;
+    width: beRem(30);
+    height: 2px;
+    background: #04BA83;
+    bottom: 0;
+    transition: all 0.3s linear;
+    transform: translateX(-50%);
+  }
+}

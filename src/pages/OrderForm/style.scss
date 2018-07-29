@@ -1,0 +1,65 @@
+@import '../../common/common.scss';
+.order-form{
+  font-size: beRem(14);
+  .order-block{
+    margin-top: beRem(5);
+    li{
+      background: #fff;
+      margin-bottom: beRem(10);
+      .add-time{
+        padding: 0 beRem(20);
+        line-height: beRem(40);
+        color: #666;
+        span{
+          float: right;
+          color: #FF3B53;
+          font-weight: bold;
+        }
+      }
+      .order-detail{
+        background: #FAFAFA;
+        padding: beRem(5) beRem(20);
+        line-height: beRem(24);
+        .detail-name{
+          font-size: beRem(17);
+          font-weight: bold;
+          line-height: beRem(34);
+        }
+        .tee-time{
+          span{
+            display: inline-block;
+            border: 1px solid #009973;
+            border-radius: 3px;
+            color:#04BA83;
+            margin-left: beRem(20);
+            line-height: beRem(16);
+            padding: 0 beRem(2);
+          }
+          b{
+            font-weight: normal;
+            float: right;
+          }
+        }
+        .total{
+          margin-top: beRem(10);
+          span{
+            color:#FF3B53;
+          }
+        }
+      }
+      .btn-bar{
+        padding: 0 beRem(20);
+        text-align: right;
+        span{
+          display: inline-block;
+          line-height: beRem(30);
+          padding: 0 beRem(10);
+          border: 1px solid #666666;
+          border-radius: beRem(30);
+          margin: beRem(10) 0 beRem(10) beRem(20);
+        }
+      }
+    }
+  }
+}
+

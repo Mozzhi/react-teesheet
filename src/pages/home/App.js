@@ -5,7 +5,6 @@ import { HttpRequest } from '../../api'
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
-import Picker from 'react-mobile-picker';
 let Swiper = window.Swiper;
 
 class App extends Component {
@@ -22,28 +21,10 @@ class App extends Component {
           games: [],
           informations: [],
           banners: [],
-          valueGroups: {
-              title: 'Mr.',
-              firstName: 'Micheal',
-              secondName: 'Jordan'
-          },
-          optionGroups: {
-              title: ['Mr.', 'Mrs.', 'Ms.', 'Dr.'],
-              firstName: ['John', 'Micheal', 'Elizabeth'],
-              secondName: ['Lennon', 'Jackson', 'Jordan', 'Legend', 'Taylor']
-          },
-          isPickerShow: false,
       }
 
   }
-    handleChange = (name, value) => {
-        this.setState(({valueGroups}) => ({
-            valueGroups: {
-                ...valueGroups,
-                [name]: value
-            }
-        }));
-    };
+
       componentDidMount(){
           this.getBanners();
           this.getGames();
@@ -80,11 +61,6 @@ class App extends Component {
             }
         })
     }
-    togglePicker = () => {
-        this.setState(({isPickerShow}) => ({
-            isPickerShow: !isPickerShow
-        }));
-    };
 
     componentWillUnmount() {
         if (this.swiper) { // 销毁swiper
@@ -122,9 +98,8 @@ class App extends Component {
     }
 
   render() {
-        const toggleClass = `picker-box${this.state.isPickerShow ? ' picker-show' : ''}`;
     return (
-      <div className="home">
+      <div className="home has-foottab">
           <div className="swiper-container" ref="lun">
               <div className="swiper-wrapper">
                   {
@@ -144,7 +119,7 @@ class App extends Component {
           </div>
           <div className="info search-box">
               <div className="search-bar"><img src={require("../../static/images/calendar.png")} alt="calendar"/>07-26 <span>（今天）</span> </div>
-              <div className="search-bar" onClick={this.togglePicker}><img src={require("../../static/images/vip.png")} alt="calendar"/>{this.state.valueGroups.title + '-' + this.state.valueGroups.firstName + '-' + this.state.valueGroups.secondName}</div>
+              <div className="search-bar"><img src={require("../../static/images/vip.png")} alt="calendar"/>访客</div>
               <div className="btn-box">
                   <div className="btn search-btn">搜索球场套餐</div>
               </div>
@@ -189,12 +164,6 @@ class App extends Component {
               }
           </div>
           <FootTab addClass="home"></FootTab>
-          <div className={toggleClass} onTouchStart={(event) => {event.preventDefault(); }}>
-              <Picker
-                  optionGroups={this.state.optionGroups}
-                  valueGroups={this.state.valueGroups}
-                  onChange={this.handleChange.bind(this)} />
-          </div>
       </div>
     );
   }

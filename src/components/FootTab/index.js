@@ -20,7 +20,7 @@ class FootTab extends Component {
         return (
             <div className="foot-tab" data-flex="dir:left box:mean">
                 <div data-flex="main:center cross:center" className={(this.props.addClass === 'home' ? 'active' : '')}>
-                    <Link to="/mine">
+                    <Link to="/">
                         <div>
                             <span className={"tab-icon home-icon "}></span>
                             <div>首页</div>
@@ -28,7 +28,7 @@ class FootTab extends Component {
                     </Link>
                 </div>
                 <div data-flex="main:center cross:center" className={(this.props.addClass === 'order' ? 'active' : '')}>
-                    <Link to="/mine">
+                    <Link to="/order_list/play">
                     <div>
                         <span className={"tab-icon order-icon "}></span>
                         <div>订单</div>
