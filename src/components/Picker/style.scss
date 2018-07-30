@@ -1,0 +1,71 @@
+@import "../../common/common.scss";
+.picker-boxs{
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  .picker-mask{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+  }
+  .picker-content{
+    height: beRem(160);
+    background: $w;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    .head-bar{
+      height: beRem(40);
+      line-height: beRem(40);
+      padding: 0 beRem(20);
+      border-bottom: $border-e1;
+    }
+    .white-mask{
+      position: absolute;
+      height: beRem(40);
+      background: rgba(255,255,255,0.8);
+      width: 100%;
+      left: 0;
+      z-index: 2;
+      &.mask-middle{
+        top: beRem(80);
+        z-index:1;
+        background: #fafafa;
+      }
+      &.mask-top{
+        top: beRem(40);
+      }
+      &.mask-bottom{
+        bottom: 0;
+      }
+    }
+    .swiper-box {
+      overflow: hidden;
+      height: beRem(120);
+      padding-top: beRem(40);
+      .swiper-container {
+        height: beRem(40);
+        line-height: beRem(40);
+        bottom: 0;
+        width: 100%;
+        overflow: visible;
+        font-size: beRem(14);
+        .swiper-slide-active{
+          color:$c3;
+        }
+      }
+    }
+  }
+  &.picker-show{
+    display: block;
+  }
+}

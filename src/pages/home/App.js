@@ -5,6 +5,7 @@ import { HttpRequest } from '../../api'
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
+import Picker from '../../components/Picker';
 let Swiper = window.Swiper;
 
 class App extends Component {
@@ -12,15 +13,18 @@ class App extends Component {
       super(props);
       this.state = {
           tag: [],
-          game: {
-              img:'http://teesheet.dev.baigolf.com/static/uploads/ads_title_img/20180712/702c3cb4f0c8b5f0cfbe5c45a9843196.jpg',
-              name: '赛事标题',
-              play_time: '2018-08-01 10:00',
-              remain_num: 20,
-          },
           games: [],
           informations: [],
           banners: [],
+          data: [
+              {show_txt: '会员和访客', value: 1},
+              {show_txt: '会员', value: 2},
+              {show_txt: '访客', value: 3},
+          ],
+          picker_data: {
+              show_txt: '会员和访客', value: 1
+          },
+          pickerShow: false,
       }
 
   }
@@ -60,6 +64,19 @@ class App extends Component {
                 })
             }
         })
+    }
+
+    handlePicker(picker, bool) {
+      console.log(picker);
+      this.setState({
+          picker_data: picker,
+          pickerShow: bool
+      })
+    }
+    setPickerS(bool){
+      this.setState({
+          pickerShow: bool,
+      })
     }
 
     componentWillUnmount() {
@@ -119,9 +136,27 @@ class App extends Component {
           </div>
           <div className="info search-box">
               <div className="search-bar"><img src={require("../../static/images/calendar.png")} alt="calendar"/>07-26 <span>（今天）</span> </div>
-              <div className="search-bar"><img src={require("../../static/images/vip.png")} alt="calendar"/>访客</div>
+              <div className="search-bar" onClick={ () => {this.setPickerS(true)}}><img src={require("../../static/images/vip.png")} alt="calendar"/>{this.state.picker_data.show_txt}</div>
               <div className="btn-box">
                   <div className="btn search-btn">搜索球场套餐</div>
+              </div>
+          </div>
+          <div className="pre-block main-entry">
+              <div data-flex="dir:left box:mean">
+                  <a href="" data-flex="dir:left box:last">
+                      <div>
+                          <div className="entry-name">赛事活动</div>
+                          <div>万元大礼等你来</div>
+                      </div>
+                      <div><img src={require("../../static/images/activity.png")} alt=""/></div>
+                  </a>
+                  <a href="" data-flex="dir:left box:last">
+                      <div>
+                          <div className="entry-name">赛事活动</div>
+                          <div>万元大礼等你来</div>
+                      </div>
+                      <div><img src={require("../../static/images/activity.png")} alt=""/></div>
+                  </a>
               </div>
           </div>
           <div className="pre-block" style={{'display':this.state.games.length > 0 ? 'block' : 'none'}}>
@@ -164,6 +199,7 @@ class App extends Component {
               }
           </div>
           <FootTab addClass="home"></FootTab>
+          <Picker refs={'comstor'} data={this.state.data} handlePicker={this.handlePicker.bind(this)} show={this.state.pickerShow}></Picker>
       </div>
     );
   }

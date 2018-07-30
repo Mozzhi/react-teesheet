@@ -3,12 +3,21 @@ $rem: 1rem;
   @return ($num/37.5) * $rem;
 }
 
+//定义颜色值
+$w: #fff;
+$c3: #333;
+$c6: #666;
+$c9: #999;
+$border-e1: 1px solid #e1e1e1;
+$btn-green: linear-gradient(90deg,rgba(4,221,156,1),rgba(24,202,138,1));
+
+
 .has-foottab{
   padding-bottom: beRem(50);
 }
 .more{
   font-size: beRem(14);
-  color:#999;
+  color:$c9;
   background: {
     repeat: no-repeat;
     size: beRem(5) beRem(10);
@@ -34,7 +43,7 @@ $rem: 1rem;
   left: 0;
   display: none;
   width:100%;
-  background: #fff;
+  background: $w;
   z-index: 10;
 }
 .picker-show{
