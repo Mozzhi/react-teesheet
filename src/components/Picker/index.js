@@ -20,17 +20,17 @@ class Picker extends Component {
     //     this.initSwiper();
     // }
     initSwiper() {
-        if(this.swiper){
+        if(this[this.props.refs]){
             // this.swiper.slideTo(0, 0)
-            this.swiper.destroy()
-            this.swiper = null;
+            this[this.props.refs].destroy()
+            this[this.props.refs] = null;
         }
-        this.swiper = new Swiper(this.refs[this.props.refs], {
+        this[this.props.refs] = new Swiper(this.refs[this.props.refs], {
             direction : 'vertical',
             on: {
                 slideChangeTransitionEnd: () => {
                     this.setState({
-                        pickerData: this.props.data[this.swiper.activeIndex]
+                        pickerData: this.props.data[this[this.props.refs].activeIndex]
                     })
                 }
             }

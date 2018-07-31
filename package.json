@@ -10,6 +10,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-swipe": "^5.1.1",
+    "react-toast-mobile": "^1.0.10",
     "swipe-js-iso": "^2.0.4"
   },
   "devDependencies": {

@@ -1,0 +1,21 @@
+@import '../../common/common.scss';
+.head-navigator{
+  height: beRem(45);
+  line-height: beRem(45);
+  text-align: center;
+  background: #fff;
+  border-bottom: $border-e1;
+  .nav-side{
+    padding-left: beRem(15);
+    min-width: beRem(40);
+    img{
+      width: beRem(22);
+      height: beRem(22);
+    }
+    &.side-right{
+      padding-left: 0;
+      padding-right: beRem(15);
+    }
+  }
+
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, history } from 'react-router-dom';
 import './App.scss';
 import { HttpRequest } from '../../api'
 import GameBlock from '../../components/GameBlock';
@@ -25,6 +25,7 @@ class App extends Component {
               show_txt: '会员和访客', value: 1
           },
           pickerShow: false,
+          courseBusiness: [],
       }
 
   }
@@ -33,6 +34,7 @@ class App extends Component {
           this.getBanners();
           this.getGames();
           this.getClubInformation();
+          this.getCourseBusiness();
       }
       getBanners(){
           HttpRequest({
@@ -65,7 +67,16 @@ class App extends Component {
             }
         })
     }
-
+    getCourseBusiness() {
+      HttpRequest({
+          url:'CourseBusiness',
+          callback: (res) => {
+              this.setState({
+                  courseBusiness: res.data,
+              })
+          }
+      })
+    }
     handlePicker(picker, bool) {
       console.log(picker);
       this.setState({
@@ -78,7 +89,13 @@ class App extends Component {
           pickerShow: bool,
       })
     }
-
+    createArr(num){
+      let businessA = [];
+      for(let i=0; i<num; i++){
+          businessA.push(i);
+      }
+      return businessA;
+    }
     componentWillUnmount() {
         if (this.swiper) { // 销毁swiper
             this.swiper.destroy()
@@ -115,6 +132,7 @@ class App extends Component {
     }
 
   render() {
+      let businessL = this.createArr(Math.ceil(this.state.courseBusiness.length / 2));
     return (
       <div className="home has-foottab">
           <div className="swiper-container" ref="lun">
@@ -138,26 +156,45 @@ class App extends Component {
               <div className="search-bar"><img src={require("../../static/images/calendar.png")} alt="calendar"/>07-26 <span>（今天）</span> </div>
               <div className="search-bar" onClick={ () => {this.setPickerS(true)}}><img src={require("../../static/images/vip.png")} alt="calendar"/>{this.state.picker_data.show_txt}</div>
               <div className="btn-box">
-                  <div className="btn search-btn">搜索球场套餐</div>
+                  <div className="btn search-btn" onClick={() => { this.props.history.push("/course_list") }}>搜索球场套餐</div>
               </div>
           </div>
           <div className="pre-block main-entry">
-              <div data-flex="dir:left box:mean">
-                  <a href="" data-flex="dir:left box:last">
-                      <div>
-                          <div className="entry-name">赛事活动</div>
-                          <div>万元大礼等你来</div>
-                      </div>
-                      <div><img src={require("../../static/images/activity.png")} alt=""/></div>
-                  </a>
-                  <a href="" data-flex="dir:left box:last">
-                      <div>
-                          <div className="entry-name">赛事活动</div>
-                          <div>万元大礼等你来</div>
-                      </div>
-                      <div><img src={require("../../static/images/activity.png")} alt=""/></div>
-                  </a>
-              </div>
+              {
+                  businessL.map((i) => {
+                    return (
+                        <div data-flex="dir:left box:mean" key={i}>
+                            {
+                                this.state.courseBusiness.map((item, index) => {
+                                    if((2*i - 2) === index){
+                                    return (
+                                    <a href={item.link_url === '' ? '' : item.link_url} data-flex="dir:left box:last" key={index}>
+                                        <div>
+                                            <div className="entry-name">{item.b_name}</div>
+                                            <div>{item.b_introduction}</div>
+                                        </div>
+                                        <div><img src={item.b_icon} alt=""/></div>
+                                    </a>
+                                    )
+                                    }
+                                    if((2*i - 1) === index){
+                                    return (
+                                    <a href={item.link_url === '' ? '' : item.link_url} data-flex="dir:left box:last" key={index}>
+                                        <div>
+                                            <div className="entry-name">{item.b_name}</div>
+                                            <div>{item.b_introduction}</div>
+                                        </div>
+                                        <div><img src={item.b_icon} alt=""/></div>
+                                    </a>
+                                    )
+                                    }
+                                })
+                            }
+                        </div>
+                    )
+                  })
+              }
+
           </div>
           <div className="pre-block" style={{'display':this.state.games.length > 0 ? 'block' : 'none'}}>
               <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>

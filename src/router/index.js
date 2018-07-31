@@ -6,6 +6,7 @@ import App from '../pages/home/App';
 const NewsList = asyncComponent(() => import('../pages/newslist/NewsList'))
 const Mine = asyncComponent(() => import('../pages/mine'))
 const OrderForm = asyncComponent(() => import('../pages/OrderForm'))
+const CourseList = asyncComponent(() => import('../pages/CourseList'))
 
 class Router extends Component {
   render() {
@@ -16,6 +17,7 @@ class Router extends Component {
             <Route exact path="/" component={App}/>
             <Route path="/newslist" component={NewsList} />
             <Route path="/order_list/:type" component={OrderForm} />
+            <Route path="/course_list" component={CourseList} />
             <Route path="/mine" component={Mine} />
             <Redirect to='/' />
           </Switch>

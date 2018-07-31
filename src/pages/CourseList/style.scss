@@ -1,0 +1,22 @@
+@import "../../common/common.scss";
+.course-list{
+  .course-block{
+    background: $w;
+    margin-top: beRem(10);
+    .course-name{
+      font-size: beRem(21);
+      font-weight: bold;
+      line-height: beRem(40);
+      background: $fa;
+      padding: 0 beRem(20);
+    }
+    .combo-block{
+      border-bottom: $border-e1;
+      padding: beRem(10) beRem(20);
+      font-size: beRem(17);
+      &:last-child{
+        border-bottom: none;
+      }
+    }
+  }
+}
