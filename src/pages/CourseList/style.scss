@@ -17,6 +17,40 @@
       &:last-child{
         border-bottom: none;
       }
+      .combo-name{
+        font-size: beRem(19);
+        margin: beRem(5) 0;
+      }
+      .pre-bar{
+        .price-box{
+          line-height: beRem(26);
+          font-size: beRem(15);
+          b{
+            font-size: beRem(18);
+          }
+          .book{
+            display: inline-block;
+            width: beRem(70);
+            height: beRem(35);
+            text-align: center;
+            background: $btn-green;
+            color:$w;
+            border-radius: beRem(35);
+            line-height: beRem(35);
+            font-size: beRem(17);
+          }
+        }
+        img{
+          width: beRem(35);
+          height: beRem(35);
+        }
+      }
+      .card-bar{
+        margin: beRem(10) 0;
+      }
+      .has-no-card{
+        color: $c9;
+      }
     }
   }
 }

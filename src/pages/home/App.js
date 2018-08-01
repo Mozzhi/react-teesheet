@@ -91,7 +91,7 @@ class App extends Component {
     }
     createArr(num){
       let businessA = [];
-      for(let i=0; i<num; i++){
+      for(let i=1; i<=num; i++){
           businessA.push(i);
       }
       return businessA;
