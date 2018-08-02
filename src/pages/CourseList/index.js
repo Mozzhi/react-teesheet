@@ -17,7 +17,7 @@ class CourseList extends Component {
     }
     getCourseList(){
         HttpRequest({
-            url:'GolfCombo?booking_type=1&date=2018-08-01',
+            url:'GolfCombo?booking_type=1&date=2018-08-04',
             callback: (res) => {
                 this.setState({
                     course_list: res.data.combo_list,
@@ -38,25 +38,42 @@ class CourseList extends Component {
                             return (
                                 <div className="course-block" key={index}>
                                     <div className="course-name">{item.course_name}</div>
-                                    <div className="combo-block">
-                                        <div className="combo-name">2018年会员专享</div>
-                                        <div data-flex="dir:left box:last" className="pre-bar">
-                                            <div>06:00~18:00</div>
-                                            <div className="price-box">￥<b>123</b></div>
-                                        </div>
-                                        <div data-flex="dir:left box:last" className="pre-bar">
-                                            <div><img src={require('../../static/images/caddie.png')} alt=""/></div>
-                                            <div className="price-box"><span className="book">预订</span></div>
-                                        </div>
-                                        <div data-flex="dir:left box:last" className="pre-bar card-bar">
-                                            <div>企业团体会籍卡</div>
-                                            <div className="price-box">￥<b>123</b></div>
-                                        </div>
-                                        <div data-flex="dir:left box:last" className="pre-bar card-bar has-no-card">
-                                            <div>企业团体会籍卡</div>
-                                            <div className="price-box">￥<b>123</b></div>
-                                        </div>
-                                    </div>
+                                    {
+                                        item.combo_list.map((vo, i) => {
+                                            return (
+                                                <div className="combo-block" key={i}>
+                                                    <div className="combo-name">{vo.combo_name}</div>
+                                                    <div data-flex="dir:left box:last" className="pre-bar">
+                                                        <div>{vo.time_interval}</div>
+                                                        <div className="price-box">￥<b>{vo.show_price}</b></div>
+                                                    </div>
+                                                    <div data-flex="dir:left box:last" className="pre-bar icon-bar">
+                                                        <div>
+                                                            {
+                                                                vo.icon_arr.map((icon, k) => {
+                                                                    return (
+                                                                        <img src={require(`../../static/images/${icon}.png`)} alt={icon} key={k}/>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </div>
+                                                        <div className="price-box"><span onClick={() => { this.props.history.push("/ball_position") }} className="book">预订</span></div>
+                                                    </div>
+                                                    {
+                                                        vo.price_list.map((card, k) => {
+                                                            return (
+                                                                <div data-flex="dir:left box:last" className={`pre-bar card-bar ${card.is_valid ? '' : 'has-no-card'}`} key={k}>
+                                                                    <div>{card.member_name}</div>
+                                                                    <div className="price-box">￥<b>{card.member_price}</b></div>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    }
+
                                 </div>
                             )
                         })

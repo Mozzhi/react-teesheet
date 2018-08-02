@@ -43,6 +43,7 @@
         img{
           width: beRem(35);
           height: beRem(35);
+          margin: 0 beRem(5) beRem(5) 0;
         }
       }
       .card-bar{
@@ -50,6 +51,9 @@
       }
       .has-no-card{
         color: $c9;
+      }
+      .icon-bar{
+        margin-top: beRem(5);
       }
     }
   }

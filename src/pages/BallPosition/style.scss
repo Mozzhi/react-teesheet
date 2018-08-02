@@ -1,0 +1,45 @@
+@import '../../common/common.scss';
+.ball-position{
+  .table-head{
+    height: beRem(45);
+    background: $w;
+    text-align: center;
+    .time-head{
+      width: beRem(80);
+      position: relative;
+      overflow: hidden;
+      border-right: $border-e1;
+      &:before{
+        position: absolute;
+        display: block;
+        content: "";
+        border-bottom: $border-e1;
+        width: beRem(90);
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) rotate(30deg);
+      }
+      span{
+        position: absolute;
+        &.t-span{
+          bottom: beRem(6);
+          left: beRem(6);
+        }
+        &.b-span{
+          top: beRem(6);
+          right: beRem(6);
+        }
+      }
+    }
+    .ball-head{
+      span{
+        width: beRem(25);
+        height: beRem(25);
+        border: $border-e1;
+        border-radius: 50%;
+        line-height: beRem(25);
+      }
+    }
+  }
+}
+

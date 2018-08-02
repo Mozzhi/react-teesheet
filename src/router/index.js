@@ -7,6 +7,7 @@ const NewsList = asyncComponent(() => import('../pages/newslist/NewsList'))
 const Mine = asyncComponent(() => import('../pages/mine'))
 const OrderForm = asyncComponent(() => import('../pages/OrderForm'))
 const CourseList = asyncComponent(() => import('../pages/CourseList'))
+const BallPosition = asyncComponent(() => import('../pages/BallPosition'))
 
 class Router extends Component {
   render() {
@@ -18,6 +19,7 @@ class Router extends Component {
             <Route path="/newslist" component={NewsList} />
             <Route path="/order_list/:type" component={OrderForm} />
             <Route path="/course_list" component={CourseList} />
+            <Route path="/ball_position" component={BallPosition} />
             <Route path="/mine" component={Mine} />
             <Redirect to='/' />
           </Switch>
