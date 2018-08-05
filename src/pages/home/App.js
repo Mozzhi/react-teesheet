@@ -6,6 +6,9 @@ import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
 import Picker from '../../components/Picker';
+import { createArr } from "../../common/util";
+
+
 let Swiper = window.Swiper;
 
 class App extends Component {
@@ -89,13 +92,7 @@ class App extends Component {
           pickerShow: bool,
       })
     }
-    createArr(num){
-      let businessA = [];
-      for(let i=1; i<=num; i++){
-          businessA.push(i);
-      }
-      return businessA;
-    }
+
     componentWillUnmount() {
         if (this.swiper) { // 销毁swiper
             this.swiper.destroy()
@@ -132,7 +129,7 @@ class App extends Component {
     }
 
   render() {
-      let businessL = this.createArr(Math.ceil(this.state.courseBusiness.length / 2));
+      let businessL = createArr(Math.ceil(this.state.courseBusiness.length / 2));
     return (
       <div className="home has-foottab">
           <div className="swiper-container" ref="lun">

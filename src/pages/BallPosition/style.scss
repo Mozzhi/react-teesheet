@@ -41,5 +41,43 @@
       }
     }
   }
+  .icon-example{
+    text-align: center;
+    line-height: beRem(40);
+    color: $c6;
+    padding: 0 beRem(12);
+    img{
+      width: beRem(15);
+      height: beRem(15);
+      vertical-align: middle;
+      margin-right: beRem(10);
+    }
+  }
+  .table-body{
+    line-height: beRem(40);
+    text-align: center;
+    .time-box{
+      width: beRem(80);
+    }
+    .ball-box{
+      input{
+        display: none;
+      }
+      span{
+        display: inline-block;
+        vertical-align: middle;
+        width: beRem(25);
+        height: beRem(25);
+        background: {
+          repeat: no-repeat;
+          size: beRem(25);
+          image: url(../../static/images/golf_grey.png);
+        };
+      }
+      input[type="checkbox"]:checked + span{
+        background-image: url(../../static/images/golf_green.png);
+      }
+    }
+  }
 }
 

@@ -216,3 +216,12 @@ export function changeTitle(title){
     }, 0);
   }
 }
+
+//
+export function createArr(num){
+    let newA = [];
+    for(let i=1; i<=num; i++){
+        newA.push(i);
+    }
+    return newA;
+}

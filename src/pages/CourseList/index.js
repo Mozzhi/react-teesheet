@@ -17,7 +17,7 @@ class CourseList extends Component {
     }
     getCourseList(){
         HttpRequest({
-            url:'GolfCombo?booking_type=1&date=2018-08-04',
+            url:'GolfCombo?booking_type=1&date=2018-08-06',
             callback: (res) => {
                 this.setState({
                     course_list: res.data.combo_list,
