@@ -16,8 +16,9 @@ class CourseList extends Component {
         this.getCourseList();
     }
     getCourseList(){
+        let params = this.props.match.params;
         HttpRequest({
-            url:'GolfCombo?booking_type=1&date=2018-08-06',
+            url:`GolfCombo?booking_type=${params.type}&date=${params.date}`,
             callback: (res) => {
                 this.setState({
                     course_list: res.data.combo_list,
@@ -57,7 +58,7 @@ class CourseList extends Component {
                                                                 })
                                                             }
                                                         </div>
-                                                        <div className="price-box"><span onClick={() => { this.props.history.push("/ball_position") }} className="book">预订</span></div>
+                                                        <div className="price-box"><span onClick={() => { this.props.history.push(`/ball_position/${item.course_id}/${this.props.match.params.date}/${vo.price_id}`) }} className="book">预订</span></div>
                                                     </div>
                                                     {
                                                         vo.price_list.map((card, k) => {

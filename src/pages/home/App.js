@@ -5,13 +5,14 @@ import { HttpRequest } from '../../api'
 import GameBlock from '../../components/GameBlock';
 import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
-import Picker from '../../components/Picker';
-import { createArr } from "../../common/util";
-import { Button } from 'antd-mobile';
+import { createArr, returnMD } from "../../common/util";
+import { Calendar, Picker } from 'antd-mobile';
 
 let Swiper = window.Swiper;
+const now = new Date();
 
 class App extends Component {
+    originbodyScrollY = document.getElementsByTagName('body')[0].style.overflowY;
   constructor(props) {
       super(props);
       this.state = {
@@ -20,18 +21,45 @@ class App extends Component {
           informations: [],
           banners: [],
           data: [
-              {show_txt: '会员和访客', value: 1},
-              {show_txt: '会员', value: 2},
-              {show_txt: '访客', value: 3},
+              {label: '会员和访客', value: 1},
+              {label: '会员', value: 2},
+              {label: '访客', value: 3},
           ],
           picker_data: {
-              show_txt: '会员和访客', value: 1
+              label: '会员和访客', value: 1
           },
           pickerShow: false,
           courseBusiness: [],
+          show: false,
+          config: {},
+          startTime: now,
       }
 
   }
+    calendarShow() {
+        document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+        this.setState({
+            show: true,
+            config: { type: 'one' },
+        });
+    }
+    onCancel = () => {
+        document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
+        this.setState({
+            show: false,
+            startTime: undefined,
+            endTime: undefined,
+        });
+    }
+
+    onConfirm = (startTime, endTime) => {
+        document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
+        this.setState({
+            show: false,
+            startTime: startTime,
+            endTime,
+        });
+    }
 
       componentDidMount(){
           this.getBanners();
@@ -142,7 +170,6 @@ class App extends Component {
               </div>
               <div className="swiper-pagination" id='body-left-pagination'></div>
           </div>
-          <Button>default</Button>
           <div data-flex="dir:left box:first" className="info">
               <div><img src={require("../../static/images/news_title.png")} alt="news"/></div>
               <div className="info-list">
@@ -151,10 +178,13 @@ class App extends Component {
               </div>
           </div>
           <div className="info search-box">
-              <div className="search-bar"><img src={require("../../static/images/calendar.png")} alt="calendar"/>07-26 <span>（今天）</span> </div>
-              <div className="search-bar" onClick={ () => {this.setPickerS(true)}}><img src={require("../../static/images/vip.png")} alt="calendar"/>{this.state.picker_data.show_txt}</div>
+              <div className="search-bar" onClick={() => {this.calendarShow()}}><img src={require("../../static/images/calendar.png")} alt="calendar"/>{this.state.startTime && returnMD(this.state.startTime)} <span>（今天）</span> </div>
+              <Picker data={this.state.data} cols={1} onChange={(v) => {this.setState({picker_data: this.state.data[v[0] - 1]})}} className="forss">
+                  <div className="search-bar"><img src={require("../../static/images/vip.png")} alt="calendar"/>{this.state.picker_data.label}
+                  </div>
+              </Picker>
               <div className="btn-box">
-                  <div className="btn search-btn" onClick={() => { this.props.history.push("/course_list") }}>搜索球场套餐</div>
+                  <div className="btn search-btn" onClick={() => { this.props.history.push(`/course_list/${returnMD(this.state.startTime, 'ymd')}/${this.state.picker_data.value}`) }}>搜索球场套餐</div>
               </div>
           </div>
           <div className="pre-block main-entry">
@@ -234,7 +264,15 @@ class App extends Component {
               }
           </div>
           <FootTab addClass="home"></FootTab>
-          <Picker refs={'comstor'} data={this.state.data} handlePicker={this.handlePicker.bind(this)} show={this.state.pickerShow}></Picker>
+          <Calendar
+              {...this.state.config}
+              visible={this.state.show}
+              onCancel={this.onCancel}
+              onConfirm={this.onConfirm}
+              defaultDate={now}
+              minDate={new Date(+now - 5184000000)}
+              maxDate={new Date(+now + 31536000000)}
+          />
       </div>
     );
   }

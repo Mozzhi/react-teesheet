@@ -16,8 +16,9 @@ class BallPosition extends Component {
         this.getTimeFrames();
     }
     getTimeFrames(){
+        let params = this.props.match.params;
         HttpRequest({
-            url:'GolfTimeFrames?course_id=1&play_date=2018-08-07&price_id=529',
+            url:`GolfTimeFrames?course_id=${params.course_id}&play_date=${params.date}&price_id=${params.price_id}`,
             callback: (res) => {
                 this.setState({
                     time_frame: res.data.time_frame,

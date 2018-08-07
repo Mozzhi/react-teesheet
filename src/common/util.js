@@ -97,7 +97,6 @@ export function addZero(num) {
 // 
 export function returnMD(date, f){
   let dates = new Date(date);
-  console.log()
   let y = dates.getFullYear();
   let m = addZero(dates.getMonth() + 1);
   let d = addZero(dates.getDate());

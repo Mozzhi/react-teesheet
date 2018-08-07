@@ -18,8 +18,8 @@ class Router extends Component {
             <Route exact path="/" component={App}/>
             <Route path="/newslist" component={NewsList} />
             <Route path="/order_list/:type" component={OrderForm} />
-            <Route path="/course_list" component={CourseList} />
-            <Route path="/ball_position" component={BallPosition} />
+            <Route path="/course_list/:date/:type" component={CourseList} />
+            <Route path="/ball_position/:course_id/:date/:price_id" component={BallPosition} />
             <Route path="/mine" component={Mine} />
             <Redirect to='/' />
           </Switch>
