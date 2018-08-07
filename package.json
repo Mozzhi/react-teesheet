@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "flex.css": "^1.1.7",
+    "qr-code-with-logo": "^1.0.16",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^4.3.1",
