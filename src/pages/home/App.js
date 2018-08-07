@@ -7,7 +7,7 @@ import NewsBlock from '../../components/NewsBlock';
 import FootTab from '../../components/FootTab';
 import Picker from '../../components/Picker';
 import { createArr } from "../../common/util";
-
+import { Button } from 'antd-mobile';
 
 let Swiper = window.Swiper;
 
@@ -142,6 +142,7 @@ class App extends Component {
               </div>
               <div className="swiper-pagination" id='body-left-pagination'></div>
           </div>
+          <Button>default</Button>
           <div data-flex="dir:left box:first" className="info">
               <div><img src={require("../../static/images/news_title.png")} alt="news"/></div>
               <div className="info-list">
