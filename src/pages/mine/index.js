@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HttpRequest } from '../../api'
 import FootTab from '../../components/FootTab';
 import './style.scss';
+import {returnMD} from "../../common/util";
 class Mine extends Component {
     constructor(props){
         super(props);
@@ -31,13 +32,11 @@ class Mine extends Component {
         }
         return (
             <div className="mine has-foottab">
-                <div className="attention" data-flex="dir:left box:justify"><div><img className="notice" src={require('../../static/images/icon_notice_me.png')} alt="icon_notice_me"/></div><div>首次完善个人资料奖励<b>5000</b>积分(可抵扣<b>50</b>元)</div><div><img src={require('../../static/images/btn_close_me.png')} alt="btn_close_me"/></div></div>
+                <div className="attention" data-flex="dir:left box:justify"><div><img className="notices" src={require('../../static/images/icon_notice_me.png')} alt="icon_notice_me"/></div><div>首次完善个人资料奖励<b>5000</b>积分(可抵扣<b>50</b>元)</div><div><img src={require('../../static/images/btn_close_me.png')} alt="btn_close_me"/></div></div>
                 <div className="my-detail">
                     <div data-flex="dir:left box:justify" className="my-info">
                         <div className="my-pic" data-flex=" main:left cross:center">
-                            <div style={{
-                                backgroundImage: `url(${myMsg.user_pic})`,
-                            }}></div>
+                            <div style={{backgroundImage: `url(${myMsg.user_pic})`,}}></div>
                         </div>
                         <div className="user-base-msg">
                             <div className="user-name">{myMsg.player_name}<span>{myMsg.member_type_id_lang}</span></div>
@@ -50,7 +49,7 @@ class Mine extends Component {
                     </div>
                     <div data-flex="box:mean" className="assets">
                         <div>
-                            <b>{myMsg.balance}</b>
+                            <b>{myMsg.balance - 0}</b>
                             <div>余额</div>
                         </div>
                         <div>
@@ -64,7 +63,7 @@ class Mine extends Component {
                     </div>
                 </div>
                 <div className="operation-bar">
-                    <div>我的二维码<span className="more"><img src={require('../../static/images/icon_QR_me.png')} alt="qr"/></span></div>
+                    <div onClick={() => { this.props.history.push(`/myqr`)}}>我的二维码<span className="more"><img src={require('../../static/images/icon_QR_me.png')} alt="qr"/></span></div>
                 </div>
                 <div className="operation-bar">
                     <div>关于风神<span className="more"></span></div>

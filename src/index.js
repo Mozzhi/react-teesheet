@@ -7,6 +7,8 @@ import registerServiceWorker from './registerServiceWorker';
 import 'lib-flexible';
 import { GetQueryString } from './common/util';
 import { HttpRequest } from './api';
+import Toast , { T } from 'react-toast-mobile';
+import 'react-toast-mobile/lib/react-toast-mobile.css';
 
 let jwtToken = localStorage.getItem('token');
 if(!jwtToken || jwtToken === null) {
@@ -39,5 +41,5 @@ if(!jwtToken || jwtToken === null) {
 
 
 
-ReactDOM.render(<Router />, document.getElementById('root'));
+ReactDOM.render(<div><Toast /><Router /></div>, document.getElementById('root'));
 registerServiceWorker();

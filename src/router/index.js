@@ -8,6 +8,7 @@ const Mine = asyncComponent(() => import('../pages/mine'))
 const OrderForm = asyncComponent(() => import('../pages/OrderForm'))
 const CourseList = asyncComponent(() => import('../pages/CourseList'))
 const BallPosition = asyncComponent(() => import('../pages/BallPosition'))
+const MyQrCode = asyncComponent(() => import('../pages/MyQrCode'))
 
 class Router extends Component {
   render() {
@@ -21,6 +22,7 @@ class Router extends Component {
             <Route path="/course_list/:date/:type" component={CourseList} />
             <Route path="/ball_position/:course_id/:date/:price_id" component={BallPosition} />
             <Route path="/mine" component={Mine} />
+            <Route path="/myqr" component={MyQrCode} />
             <Redirect to='/' />
           </Switch>
         </HashRouter>

@@ -3,6 +3,7 @@ import './style.scss';
 import { HttpRequest } from '../../api';
 import HeadNavigation from "../../components/HeadNavigation";
 import { createArr } from "../../common/util";
+import { T } from 'react-toast-mobile';
 
 class BallPosition extends Component {
     constructor(props) {
@@ -20,6 +21,10 @@ class BallPosition extends Component {
         HttpRequest({
             url:`GolfTimeFrames?course_id=${params.course_id}&play_date=${params.date}&price_id=${params.price_id}`,
             callback: (res) => {
+
+                if(res.data.time_frame.length < 1){
+                    T.notify('当前套餐未配置球位')
+                }
                 this.setState({
                     time_frame: res.data.time_frame,
                     config: res.data.config,
