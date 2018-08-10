@@ -3,7 +3,7 @@
 .game-block{
   padding-bottom: beRem(20);
   padding-top: beRem(20);
-  border-bottom: 1px solid #e1e1e1;
+  border-bottom: $border-e1;
   &:last-child{
     border-bottom: none;
   }
@@ -14,6 +14,39 @@
       repeat: no-repeat;
       size: cover;
     };
+    position: relative;
+    span{
+      display: inline-block;
+      height: beRem(20);
+      line-height: beRem(20);
+      background:linear-gradient(90deg,rgba(254,174,4,1),rgba(255,207,52,1));
+      color: $w;
+      position: absolute;
+      padding: 0 beRem(3);
+      &:before{
+        position: absolute;
+        content: "";
+        border:{
+          style: solid;
+          width: beRem(10) beRem(3);
+          color: rgba(255,207,52,1) transparent transparent rgba(255,207,52,1);
+        }
+        top: 0;
+        right: beRem(-6);
+      }
+      &.finished{
+        background:linear-gradient(-90deg,rgba(81,81,81,1),rgba(57,57,57,1));
+        &:before{
+          border-color: rgba(81,81,81,1) transparent transparent rgba(81,81,81,1);
+        }
+      }
+      &.under-way{
+        background:linear-gradient(-96.1deg,rgba(13,196,21,1),rgba(0,178,91,1));
+        &:before{
+          border-color: rgba(13,196,21,1) transparent transparent rgba(13,196,21,1);
+        }
+      }
+    }
   }
   .game-msg{
     padding: 0 beRem(20) beRem(0) beRem(10);

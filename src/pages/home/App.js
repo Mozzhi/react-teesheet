@@ -47,7 +47,7 @@ class App extends Component {
         document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
         this.setState({
             show: false,
-            startTime: undefined,
+            startTime: now,
             endTime: undefined,
         });
     }
@@ -256,7 +256,7 @@ class App extends Component {
 
           </div>
           <div className="pre-block" style={{'display':this.state.informations.length > 0 ? 'block' : 'none'}}>
-              <div className="pre-title"><img src={require("../../static/images/news.png")} alt=""/>风神资讯 <span className="more">更多</span>  </div>
+              <div className="pre-title"><img src={require("../../static/images/news.png")} alt=""/>风神资讯 <span className="more" onClick={() => { this.props.history.push(`/newslist`) }}>更多</span>  </div>
               {
                   this.state.informations.map((item, index) => {
                       return <NewsBlock game={item} key={index}></NewsBlock>
