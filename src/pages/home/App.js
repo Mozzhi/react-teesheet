@@ -225,7 +225,7 @@ class App extends Component {
 
           </div>
           <div className="pre-block" style={{'display':this.state.games.length > 0 ? 'block' : 'none'}}>
-              <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more">更多</span>  </div>
+              <div className="pre-title"><img src={require("../../static/images/hot.png")} alt=""/>热门赛事 <span className="more" onClick={() => { this.props.history.push(`/gameslist`) }}>更多</span>  </div>
               <div className="swiper-container" ref="game">
                   <div className="swiper-wrapper">
                       <div className="swiper-slide">
