@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { T } from 'react-toast-mobile';
 axios.defaults.baseURL = 'http://teesheet.dev.baigolf.com/api/'
 // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers['Authorization'] = 'jwt ' + (localStorage.getItem('token') || '');
@@ -51,17 +51,17 @@ let HttpRequest = function(obj){
                 // 309 =》 无效的头部信息
 
             }else if(res.data.code === -334){ //球位选择页面需提前X小时预订
-                alert(res.data.msg);
+                T.notify(res.data.msg);
             }else if(res.data.code === -401){ //虚假店铺信息
                 // that.$router.go(-1);
             }else{
                 typeof obj.fail === 'function' && obj.fail(res);
-                // that.$toast(res.data.msg);
+                T.notify(res.data.msg);
             }
         })
         .catch((err) => {
             console.log(err);
-            alert(err.message)
+            T.notify(err.message)
         })
 }
 

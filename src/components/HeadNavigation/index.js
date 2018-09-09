@@ -11,7 +11,7 @@ class HeadNavigation extends Component {
             <div className="head-navigator" data-flex="dir:left box:justify">
                 <div className="nav-side" data-flex="mian:left cross:center" onClick={() => {this.props.history.goBack()}}><img src={require('../../static/images/btn_back.png')} alt=""/></div>
                 <div>{this.props.title}</div>
-                <div className="nav-side side-right"></div>
+                <div className="nav-side side-right" data-flex="mian:left cross:center" dangerouslySetInnerHTML={{__html: this.props.slots }} onClick={() => {this.props.rightEvent()}}></div>
             </div>
         )
     }
